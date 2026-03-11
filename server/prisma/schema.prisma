@@ -1,0 +1,172 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  name         String?
+  phone        String        @unique
+  password     String
+  role         Role          @default(USER)
+  status       String        @default("0")
+  inviteCode   String        @unique
+  invitedBy    String?
+  invitedAt    DateTime?
+  createdAt    DateTime      @default(now())
+  orders       Order[]
+  profile      Profile?
+  task         Task[]
+  transactions Transaction[]
+}
+
+model Profile {
+  id             Int     @id @default(autoincrement())
+  currentBalance Int     @default(0)
+  totalDeposit   Int     @default(0)
+  totalIncome    Int     @default(0)
+  referralIncome Int?    @default(0)
+  fundIncome    Int?     @default(0)
+  NextFundWithdraw DateTime?
+  totalCommission  Int      @default(0)
+  vipName        String?
+  userId         String  @unique
+  taskStatus     String  @default("0")
+  user           User    @relation(fields: [userId], references: [id], onDelete: NoAction)
+  vip            Vip?    @relation(fields: [vipName], references: [name])
+
+  @@index([vipName], map: "Profile_vipName_fkey")
+}
+
+model Vip {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique @default("0")
+  price         Int       @default(0)
+  dailyIncome   Int       @default(0)
+  incomePerTask Int       @default(0)
+  commission    Int       @default(0)
+  description   String?
+  logoDir       String?
+  dailyTask     Int?
+  profiles      Profile[]
+}
+
+model TaskInfo {
+  id            Int     @id @default(autoincrement())
+  taskId        String  @unique
+  taskName      String?
+  description   String?
+  incomePerTask Int     @default(0)
+  logoDir       String?
+  tasks         Task[]
+}
+
+model Task {
+  id         Int      @id @default(autoincrement())
+  status     String   @default("0")
+  userId     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  taskInfoId Int
+  taskInfo   TaskInfo @relation(fields: [taskInfoId], references: [id], onDelete: NoAction)
+  user       User     @relation(fields: [userId], references: [id], onDelete: NoAction)
+
+  @@unique([userId, taskInfoId], name: "userId_taskInfoId")
+  @@index([taskInfoId], map: "Task_taskInfoId_fkey")
+}
+
+model Order {
+  id             Int             @id @default(autoincrement())
+  status         OrderStatus     @default(PENDING)
+  type           TransactionType
+  depositType    String?
+  amount         Int
+  paymentMethod  String
+  accountOwner   String?
+  useAccount     String?
+  phone          String?
+  receipt        String?
+  createdAt      DateTime        @default(now())
+  userId         String
+  idempotencyKey String?         @db.VarChar(255)
+  user           User            @relation(fields: [userId], references: [id], onDelete: NoAction)
+  transactions Transaction[] // Add this relation
+  @@index([userId], map: "Order_userId_fkey")
+}
+
+model Transaction {
+  id        Int             @id @default(autoincrement())
+  type      TransactionType
+  amount    Int
+  level       Int?  
+  description String?          
+  createdAt DateTime        @default(now())
+  userId    String
+  orderId Int?
+  user      User            @relation(fields: [userId], references: [id], onDelete: NoAction)
+  order   Order?   @relation(fields: [orderId], references: [id])
+  @@index([userId], map: "Transaction_userId_fkey")
+}
+
+model Setting {
+  id                       Int     @id @default(autoincrement())
+  commission               String?
+  commission2              String?
+  commission3              String?
+  minWithdraw              Int?
+  maxWithdraw              Int?
+  withdrawFee              String? @default("0")
+  dallyDepositLimit        Int?
+  dallyWithdrawLimit       Int?
+  maxDeposit               Int?
+  minDeposit               Int?
+  dallyDepositLimitAmount  Int?
+  dallyWithdrawLimitAmount Int?
+}
+
+model Bank {
+  id        Int        @id @unique(map: "logo") @default(autoincrement())
+  bankName  String
+  accNumber String
+  owner     String
+  status    BankStatus @default(BOTH)
+  logo      String     @db.VarChar(255)
+}
+
+model test {
+  id BigInt @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+enum Role {
+  SUPER_ADMIN
+  WITHDRAW
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  REJECTED
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAW
+  COMMISSION
+  TASK
+  VIP
+  FUND_W
+  FUND_D
+}
+
+enum BankStatus {
+  DEPOSIT
+  WITHDRAW
+  BOTH
+}

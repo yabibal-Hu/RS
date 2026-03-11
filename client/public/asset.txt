@@ -1,0 +1,11 @@
+button top color - #E53C05
+button top color - #E53C05
+button bottom color - #EF7A06
+button bottom color - #EF7A06
+
+1- deposit
+2- withdraw 
+3- Both
+
+bg-gradient-to-r from-primary to-secondary
+
