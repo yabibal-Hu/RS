@@ -141,7 +141,7 @@ const Deposit = () => {
   }, [redirectedVip, paymentMethod, selectedVip]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("rsToken");
     if (!token) {
       return;
     }
@@ -195,7 +195,7 @@ const Deposit = () => {
 
   useEffect(() => {
     const fetchBankInfo = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("rsToken");
       if (!token) return;
 
       const type = "DEPOSIT";

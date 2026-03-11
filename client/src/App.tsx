@@ -82,11 +82,10 @@ const App = () => {
      }
 
      // If token is invalid but exists in storage, clean it up
-     if (!hasValidToken && localStorage.getItem("token")) {
-       localStorage.removeItem("token");
+     if (!hasValidToken && localStorage.getItem("rsToken")) {
+       localStorage.removeItem("rsToken");
        localStorage.removeItem("userData");
        localStorage.removeItem("selectedCurrency");
-       
      }
    };
 

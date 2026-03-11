@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { decodeToken, isValidToken } from "../jwt";
 
 export const useAuth = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("rsToken");
 
   return useMemo(() => {
     if (!token || !isValidToken()) {

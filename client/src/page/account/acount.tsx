@@ -33,7 +33,7 @@ export default function Account() {
   const [showRequirements, setShowRequirements] = useState(false);
   const navigate = useNavigate();
   const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    typeof window !== "undefined" ? localStorage.getItem("rsToken") : null;
 
   useEffect(() => {
     if (!token) {

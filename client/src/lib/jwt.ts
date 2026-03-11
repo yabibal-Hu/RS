@@ -24,7 +24,7 @@ export const getTokenRole = ():
   | "SUPER_ADMIN"
   | "WITHDRAW"
   | null => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("rsToken");
   if (!token) return null;
 
   const decoded = decodeToken(token);
@@ -40,7 +40,7 @@ export const isTokenExpired = (token: string): boolean => {
 };
 
 export const isValidToken = (): boolean => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("rsToken");
   if (!token) return false;
 
   return !isTokenExpired(token);

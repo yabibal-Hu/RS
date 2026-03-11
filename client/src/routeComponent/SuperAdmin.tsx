@@ -11,11 +11,11 @@ const SuperAdminRoute: React.FC<SuperAdminRouteProps> = ({
   children,
   fallbackPath = "/admin",
 }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("rsToken");
 
   // Check if token exists and is valid
   if (!token || !isValidToken()) {
-    localStorage.removeItem("token"); // Clear invalid token
+    localStorage.removeItem("rsToken"); // Clear invalid token
     return <Navigate to="/login" replace />;
   }
 

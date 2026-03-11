@@ -55,7 +55,7 @@ const Withdraw = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("rsToken");
         if (!token) {
           navigate("/login");
           return;
@@ -107,7 +107,7 @@ const Withdraw = () => {
     setIsSubmitting(true);
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("rsToken");
       if (!token) {
         navigate("/login");
         return;
@@ -158,7 +158,7 @@ const Withdraw = () => {
     );
   }
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("rsToken");
   if (!token) {
     return (
       <div className="min-h-screen flex items-center justify-center">

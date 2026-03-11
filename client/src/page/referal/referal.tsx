@@ -28,7 +28,7 @@ const Referral = () => {
   const [totalCommission, setTotalCommission] = useState(0);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("rsToken");
     const fetchUserData = async () => {
       const response = await UserService.getReferral();
       if (response.success) {

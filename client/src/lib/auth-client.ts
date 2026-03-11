@@ -2,7 +2,7 @@
 export const authClient = {
   // Set token in localStorage
   setToken: (token: string) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem("rsToken", token);
     localStorage.setItem("welcomeCardShown", "true");
     // Dispatch event for other tabs/components
     window.dispatchEvent(new Event("authChange"));
@@ -11,12 +11,12 @@ export const authClient = {
   // Get token from localStorage
   getToken: (): string | null => {
     if (typeof window === "undefined") return null;
-    return localStorage.getItem("token");
+    return localStorage.getItem("rsToken");
   },
 
   // Remove token
   removeToken: () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("rsToken");
     localStorage.removeItem("userData");
     localStorage.removeItem("userName");
     localStorage.removeItem("vipLevel");

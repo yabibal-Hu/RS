@@ -89,7 +89,7 @@ export default function Order() {
   };
 
   const fetchOrders = async (page: number) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("rsToken");
     if (!token) return;
 
     try {
