@@ -14,7 +14,7 @@ export default function TaskStatusChecker({
   );
   // const [isTaskCompleted, setIsTaskCompleted] = useState(false);
   // const router = useRouter();
-
+console.log("taskCompletedTime", taskCompletedTime);
   useEffect(() => {
     //  if (!token) {
     //    window.location.href = "/login";

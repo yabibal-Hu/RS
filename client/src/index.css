@@ -45,7 +45,7 @@
   --accent: #657e75; /* Purple accent */
   --accent-foreground: #ffffff;
   --muted: rgba(255, 255, 255, 0.1);
-  --muted-foreground: rgba(32, 25, 25, 0.6);
+  --muted-foreground: rgb(189, 182, 182);
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.1);

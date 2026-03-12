@@ -1,12 +1,12 @@
 import {
   // TrendingUp,
   Users,
-  Zap,
-  Gift,
-  Star,
+  // Zap,
+  // Gift,
+  // Star,
   // Award,
-  Target,
-  Shield,
+  // Target,
+  // Shield,
 } from "lucide-react";
 import ReferralCard from "@/components/ReferralCard";
 import { useEffect, useState } from "react";
@@ -227,7 +227,7 @@ const Referral = () => {
           Show Referral Network
         </Button>
         {/* How It Works Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -273,7 +273,6 @@ const Referral = () => {
                 <h3 className="font-serif text-amber-800 mb-2">{step.title}</h3>
                 <p className="text-sm text-amber-500">{step.description}</p>
 
-                {/* Step number */}
                 <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center border border-amber-200">
                   <span className="text-xs font-bold text-amber-600">
                     {index + 1}
@@ -282,10 +281,10 @@ const Referral = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Benefits Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -320,7 +319,7 @@ const Referral = () => {
               </p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       <style>{`

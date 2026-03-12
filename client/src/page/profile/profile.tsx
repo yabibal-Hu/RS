@@ -111,23 +111,31 @@ const Profile = () => {
     <>
       <div className="min-h-screen ">
         {/* Header with Welcome and Quantization Level */}
-        <div className="bg-white/90 backdrop-blur-sm border-b rounded-b-2xl border-amber-200 px-4 py-4">
-          <div className="flex items-center justify-between">
-            {/* <div> */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+          // speedy and smooth
+          
+          // className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-amber-200 shadow-lg"
+        >
+          <div className="bg-white/90 backdrop-blur-sm border-b rounded-b-2xl border-amber-200 px-4 py-4">
+            <div className="flex items-center justify-between">
+              {/* <div> */}
               <p className="text-amber-500 text-xs">Welcome Back</p>
               {/* <div className="flex items-center gap-2"> */}
-                <h1 className="text-lg font-semibold text-amber-900">
-                  {name || phone}
-                </h1>
-                <div className="bg-amber-100 rounded-full px-3 py-1 flex items-center gap-1">
-                  {/* <Zap className="w-3 h-3 text-amber-600" /> */}
-                  <span className="text-xs font-medium text-amber-700">
-                    VIP {quantizationLevel}
-                  </span>
-                </div>
+              <h1 className="text-lg font-semibold text-amber-900">
+                {name || phone}
+              </h1>
+              <div className="bg-amber-100 rounded-full px-3 py-1 flex items-center gap-1">
+                {/* <Zap className="w-3 h-3 text-amber-600" /> */}
+                <span className="text-xs font-medium text-amber-700">
+                  VIP {quantizationLevel}
+                </span>
+              </div>
               {/* </div> */}
-            {/* </div> */}
-            {/* <div className="flex items-center gap-2">
+              {/* </div> */}
+              {/* <div className="flex items-center gap-2">
               <Select
                 value={selectedCurrency}
                 onValueChange={handleCurrencyChange}
@@ -152,9 +160,9 @@ const Profile = () => {
                 </SelectContent>
               </Select>
             </div> */}
+            </div>
           </div>
-        </div>
-
+        </motion.div>
         <div className="px-4 py-4 space-y-4">
           {/* Total Assets Card */}
           {/* <motion.div
@@ -191,24 +199,25 @@ const Profile = () => {
             <div className="grid grid-cols-1 gap-4">
               {/* Balance */}
               <div className="flex gap-8 items-end justify-start">
-                <p className="text-amber-500 font-semibold text-4xl mb-1">Balance</p>
+                <p className="text-amber-500 font-semibold text-4xl mb-1">
+                  Balance
+                </p>
                 <div>
-
-                <p className="text-xl font-bold text-amber-900">
-                  $
-                  {ToUSDT(
-                    vipLevel === "0"
-                      ? (balance || 0) + (referralIncome || 0)
-                      : balance || 0,
-                  ).toLocaleString()}
-                </p>
-                <p className="text-sm text-amber-400">
-                  ≈{" "}
-                  {vipLevel === "0"
-                    ? exchange((balance || 0) + (referralIncome || 0)).value
-                    : exchange(balance || 0).value}{" "}
-                  {exchange(balance || 0).currency}
-                </p>
+                  <p className="text-xl font-bold text-amber-900">
+                    $
+                    {ToUSDT(
+                      vipLevel === "0"
+                        ? (balance || 0) + (referralIncome || 0)
+                        : balance || 0,
+                    ).toLocaleString()}
+                  </p>
+                  <p className="text-sm text-amber-400">
+                    ≈{" "}
+                    {vipLevel === "0"
+                      ? exchange((balance || 0) + (referralIncome || 0)).value
+                      : exchange(balance || 0).value}{" "}
+                    {exchange(balance || 0).currency}
+                  </p>
                 </div>
               </div>
 

@@ -55,7 +55,7 @@ const Deposit = () => {
   const [userBalance, setUserBalance] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [owner, setOwner] = useState<string>("ETB");
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  // const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectedVip = searchParams.get("vip");
@@ -254,11 +254,11 @@ const Deposit = () => {
       y: 0,
       transition: { type: "spring" as const, stiffness: 300, damping: 20 },
     },
-    hover: {
-      scale: 1.02,
-      y: -2,
-      transition: { type: "spring" as const, stiffness: 400, damping: 10 },
-    },
+    // hover: {
+    //   scale: 1.02,
+    //   y: -2,
+    //   transition: { type: "spring" as const, stiffness: 400, damping: 10 },
+    // },
   };
 
   return (
@@ -317,7 +317,7 @@ const Deposit = () => {
           className="text-center mb-8"
         >
           <motion.div
-            whileHover={{ scale: 1.1, rotate: 360 }}
+            // whileHover={{ scale: 1.1, rotate: 360 }}
             transition={{ duration: 0.5 }}
             className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-amber-200 relative"
           >
@@ -362,9 +362,9 @@ const Deposit = () => {
           {/* Amount Selection Card */}
           <motion.div
             variants={cardVariants}
-            whileHover="hover"
-            onHoverStart={() => setHoveredCard("amount")}
-            onHoverEnd={() => setHoveredCard(null)}
+            // whileHover="hover"
+            // onHoverStart={() => setHoveredCard("amount")}
+            // onHoverEnd={() => setHoveredCard(null)}
             className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden"
           >
             <motion.div
@@ -375,7 +375,7 @@ const Deposit = () => {
 
             <div className="flex items-center gap-3 mb-4">
               <motion.div
-                animate={{ rotate: hoveredCard === "amount" ? 360 : 0 }}
+                // animate={{ rotate: hoveredCard === "amount" ? 360 : 0 }}
                 transition={{ duration: 0.5 }}
                 className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center"
               >
@@ -398,7 +398,7 @@ const Deposit = () => {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Current Balance */}
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
+                      // whileHover={{ scale: 1.05 }}
                       className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
                     >
                       <p className="text-amber-500 text-xs mb-2 flex items-center gap-1">
@@ -421,7 +421,7 @@ const Deposit = () => {
 
                     {/* Required Amount */}
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
+                      // whileHover={{ scale: 1.05 }}
                       className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300"
                     >
                       <p className="text-amber-600 text-xs mb-2 flex items-center gap-1">
@@ -450,8 +450,8 @@ const Deposit = () => {
                   {/* Deposit history button */}
                   <motion.div
                     className="flex items-center justify-center p-4"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    // whileHover={{ scale: 1.05 }}
+                    // whileTap={{ scale: 0.95 }}
                   >
                     <button
                       onClick={() => navigate("/deposit/record")}
@@ -466,7 +466,7 @@ const Deposit = () => {
                   {/* Balance & VIP Selection */}
                   <div className="grid grid-cols-2 gap-4">
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
+                      // whileHover={{ scale: 1.05 }}
                       className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
                     >
                       <p className="text-amber-500 text-xs mb-2">
@@ -487,7 +487,7 @@ const Deposit = () => {
                     </motion.div>
 
                     <motion.div
-                      whileHover={{ scale: 1.05 }}
+                      // whileHover={{ scale: 1.05 }}
                       className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
                     >
                       <p className="text-amber-500 text-xs mb-2">Select VIP</p>
@@ -526,8 +526,8 @@ const Deposit = () => {
                   {/* Deposit history button */}
                   <motion.div
                     className="flex items-center justify-center w-full p-4"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    // whileHover={{ scale: 1.05 }}
+                    // whileTap={{ scale: 0.95 }}
                   >
                     <button
                       onClick={() => navigate("/deposit/record")}
@@ -547,7 +547,7 @@ const Deposit = () => {
                         className="space-y-4"
                       >
                         <motion.div
-                          whileHover={{ scale: 1.05 }}
+                          // whileHover={{ scale: 1.05 }}
                           className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
                         >
                           <p className="text-amber-500 text-xs mb-2">
@@ -568,7 +568,7 @@ const Deposit = () => {
                         </motion.div>
 
                         <motion.div
-                          whileHover={{ scale: 1.05 }}
+                          // whileHover={{ scale: 1.05 }}
                           className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300"
                         >
                           <p className="text-amber-600 text-xs mb-2">
@@ -603,9 +603,9 @@ const Deposit = () => {
           {/* Payment Method Card */}
           <motion.div
             variants={cardVariants}
-            whileHover="hover"
-            onHoverStart={() => setHoveredCard("payment")}
-            onHoverEnd={() => setHoveredCard(null)}
+            // whileHover="hover"
+            // onHoverStart={() => setHoveredCard("payment")}
+            // onHoverEnd={() => setHoveredCard(null)}
             className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden"
           >
             <motion.div
@@ -616,7 +616,7 @@ const Deposit = () => {
 
             <div className="flex items-center gap-3 mb-4">
               <motion.div
-                animate={{ rotate: hoveredCard === "payment" ? 360 : 0 }}
+                // animate={{ rotate: hoveredCard === "payment" ? 360 : 0 }}
                 transition={{ duration: 0.5 }}
                 className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center"
               >
@@ -684,8 +684,8 @@ const Deposit = () => {
                         className="bg-amber-50/50 border-amber-200 text-amber-800 h-12 pr-12"
                       />
                       <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        // whileHover={{ scale: 1.1 }}
+                        // whileTap={{ scale: 0.9 }}
                         type="button"
                         onClick={handleCopy}
                         className="absolute right-2 top-1/2 transform -translate-y-1/2 text-amber-600 hover:bg-amber-100 p-2 rounded-full"
@@ -710,7 +710,7 @@ const Deposit = () => {
 
                 {!file ? (
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
+                    // whileHover={{ scale: 1.02 }}
                     className="border-2 border-dashed border-amber-200 rounded-xl p-6 text-center hover:border-amber-300 transition-colors bg-amber-50/30"
                   >
                     <input
@@ -736,8 +736,8 @@ const Deposit = () => {
                           Screenshot or photo of transaction
                         </p>
                         <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          // whileHover={{ scale: 1.05 }}
+                          // whileTap={{ scale: 0.95 }}
                           className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-white text-sm shadow-md"
                         >
                           Choose File
@@ -768,7 +768,7 @@ const Deposit = () => {
                         </div>
                       </div>
                       <motion.button
-                        whileHover={{ scale: 1.1, rotate: 90 }}
+                        // whileHover={{ scale: 1.1, rotate: 90 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={handleRemoveFile}
                         className="w-8 h-8 rounded-full bg-rose-100 hover:bg-rose-200 flex items-center justify-center transition-colors"
@@ -875,7 +875,7 @@ const Deposit = () => {
           {/* Submit Button */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
+            // whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <Button

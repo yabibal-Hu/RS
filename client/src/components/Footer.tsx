@@ -73,7 +73,7 @@ export default function Footer() {
           return (
             <Link key={item.name} to={item.href} className="relative group">
               <motion.div
-                whileHover={{ y: -2 }}
+                // whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-300 ${
                   isCurrent
@@ -127,12 +127,12 @@ export default function Footer() {
                 </span>
 
                 {/* Bottom Border on Hover */}
-                <motion.div
+                {/* <motion.div
                   initial={{ width: 0 }}
                   whileHover={{ width: "100%" }}
                   transition={{ duration: 0.2 }}
                   className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"
-                />
+                /> */}
               </motion.div>
             </Link>
           );
