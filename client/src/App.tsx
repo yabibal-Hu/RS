@@ -28,6 +28,7 @@ import { useEffect, useState } from "react";
 import { isValidToken } from "./lib/jwt";
 import GenerateCertificate from "./components/GenerateCRT";
 import CompanyProfile from "./page/company/CompanyProfile";
+import ReferralNetworkPage from "./page/referal/referralNetworkPage";
 // Import the font (this adds the @font-face rules)
 
 
@@ -197,6 +198,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Referral />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/referal-network"
+            element={
+              <ProtectedRoute>
+                <ReferralNetworkPage />
               </ProtectedRoute>
             }
           />

@@ -7,8 +7,8 @@ import {
   Check,
   Gift,
   Crown,
-  Users,
-  Star,
+  // Users,
+  // Star,
   Award,
   Zap,
 } from "lucide-react";
@@ -105,9 +105,9 @@ export default function ReferralCard({ invitationCode }: ReferralCardProps) {
             <h2 className="text-2xl font-serif text-amber-800 mb-2">
               Share & Earn
             </h2>
-            <p className="text-amber-500 text-sm">
+            {/* <p className="text-amber-500 text-sm">
               Invite friends and earn 10% commission on their deposits
-            </p>
+            </p> */}
           </div>
 
           {/* Invitation Code Display */}
@@ -133,7 +133,7 @@ export default function ReferralCard({ invitationCode }: ReferralCardProps) {
           </div>
 
           {/* Stats Preview */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          {/* <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-amber-50/50 rounded-xl p-4 text-center border border-amber-200">
               <Users className="w-5 h-5 text-amber-500 mx-auto mb-2" />
               <div className="text-sm font-medium text-amber-800">
@@ -148,7 +148,7 @@ export default function ReferralCard({ invitationCode }: ReferralCardProps) {
               </div>
               <div className="text-xs text-amber-500">50 ETB bonus</div>
             </div>
-          </div>
+          </div> */}
 
           {/* Referral Link */}
           <div className="mb-6">

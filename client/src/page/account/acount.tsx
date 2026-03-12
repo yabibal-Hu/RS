@@ -133,10 +133,10 @@ export default function Account() {
               <div className="h-2 w-full bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400"></div>
 
               <CardHeader className="relative pb-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center shadow-lg">
-                    <Lock className="w-7 h-7 text-white" />
-                  </div>
+                <div className="flex items-center gap-2">
+                  {/* <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center shadow-lg">
+                    <Lock className="w-4 h-4 text-white" />
+                  </div> */}
                   <div>
                     <CardTitle className="text-xl font-serif text-amber-800">
                       Change Password

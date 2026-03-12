@@ -344,13 +344,11 @@ export default function TaskPage() {
             </div>
             <div className="text-right">
               <p className="text-amber-600 text-sm">Task Reward</p>
-              <motion.p
+              <p
                 className="text-xl font-bold text-emerald-600"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
               >
                 {taskIncome} ETB
-              </motion.p>
+              </p>
               <p className="text-xs text-amber-500">
                 {ToUSDT(taskIncome)} USDT
               </p>
@@ -564,16 +562,15 @@ export default function TaskPage() {
                     </p>
 
                     {/* Reward Badge */}
-                    <motion.div
+                    <div
                       className="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full border border-amber-200"
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                     
                     >
                       <Gift className="w-4 h-4 text-amber-500" />
                       <span className="text-sm font-medium text-amber-700">
                         Earn {taskIncome} ETB ({ToUSDT(taskIncome)} USDT)
                       </span>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Task Status Footer */}

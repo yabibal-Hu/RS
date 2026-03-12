@@ -231,4 +231,24 @@ export const UserService = {
       }
     }
   },
+  // get referral network
+  async getReferralNetwork() {
+    try {
+      const response = await api.get(`${API_BASE_URL}/user/referral/network`);
+      return response.data;
+    } catch (error: any) {
+      console.error("API Error:", error);
+      if (error.response?.status === 401) {
+        window.location.href = "/login";
+        throw new Error("Unauthorized");
+      }
+      if (error.response?.data?.error) {
+        throw new Error(error.response.data.error);
+      } else if (error.message) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("Referral request failed");
+      }
+    }
+  },
 };

@@ -26,10 +26,10 @@ import {
 const Profile = () => {
   const [balance, setBalance] = useState(0);
   const [referralIncome, setReferralIncome] = useState(0);
-  const [totalDeposit, setTotalDeposit] = useState(0);
-  const [totalWithdraw, setTotalWithdraw] = useState(0);
+  // const [totalDeposit, setTotalDeposit] = useState(0);
+  // const [totalWithdraw, setTotalWithdraw] = useState(0);
   const navigate = useNavigate();
-  const [totalCommission, setTotalCommission] = useState(0);
+  // const [totalCommission, setTotalCommission] = useState(0);
   const [loading, setLoading] = useState(true);
   const [vipLevel, setVipLevel] = useState("0");
   const [phone, setPhone] = useState("");
@@ -43,9 +43,9 @@ const Profile = () => {
         const userInfo = await UserService.getBalance();
         setBalance(userInfo.userInfo.profile.currentBalance);
         setReferralIncome(userInfo.userInfo.profile.referralIncome);
-        setTotalCommission(userInfo.totalCommission._sum.amount);
-        setTotalDeposit(userInfo.totalDeposit._sum.amount);
-        setTotalWithdraw(userInfo.totalWithdraw._sum.amount);
+        // setTotalCommission(userInfo.totalCommission._sum.amount);
+        // setTotalDeposit(userInfo.totalDeposit._sum.amount);
+        // setTotalWithdraw(userInfo.totalWithdraw._sum.amount);
         setVipLevel(userInfo.userInfo.profile.vipName);
         setPhone(userInfo.userInfo.phone);
         setName(userInfo.userInfo.name);
@@ -113,20 +113,20 @@ const Profile = () => {
         {/* Header with Welcome and Quantization Level */}
         <div className="bg-white/90 backdrop-blur-sm border-b rounded-b-2xl border-amber-200 px-4 py-4">
           <div className="flex items-center justify-between">
-            <div>
+            {/* <div> */}
               <p className="text-amber-500 text-xs">Welcome Back</p>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2"> */}
+                <h1 className="text-lg font-semibold text-amber-900">
+                  {name || phone}
+                </h1>
                 <div className="bg-amber-100 rounded-full px-3 py-1 flex items-center gap-1">
                   {/* <Zap className="w-3 h-3 text-amber-600" /> */}
                   <span className="text-xs font-medium text-amber-700">
                     VIP {quantizationLevel}
                   </span>
                 </div>
-                <h1 className="text-lg font-semibold text-amber-900">
-                  {name || phone}
-                </h1>
-              </div>
-            </div>
+              {/* </div> */}
+            {/* </div> */}
             {/* <div className="flex items-center gap-2">
               <Select
                 value={selectedCurrency}
@@ -188,10 +188,12 @@ const Profile = () => {
             transition={{ delay: 0.1 }}
             className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-amber-200 shadow-lg"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {/* Balance */}
-              <div>
-                <p className="text-amber-500 text-xs mb-1">Balance</p>
+              <div className="flex gap-8 items-end justify-start">
+                <p className="text-amber-500 font-semibold text-4xl mb-1">Balance</p>
+                <div>
+
                 <p className="text-xl font-bold text-amber-900">
                   $
                   {ToUSDT(
@@ -200,17 +202,18 @@ const Profile = () => {
                       : balance || 0,
                   ).toLocaleString()}
                 </p>
-                <p className="text-xs text-amber-400">
+                <p className="text-sm text-amber-400">
                   ≈{" "}
                   {vipLevel === "0"
                     ? exchange((balance || 0) + (referralIncome || 0)).value
                     : exchange(balance || 0).value}{" "}
                   {exchange(balance || 0).currency}
                 </p>
+                </div>
               </div>
 
               {/* Commission */}
-              <div>
+              {/* <div>
                 <p className="text-amber-500 text-xs mb-1">Commission</p>
                 <p className="text-xl font-bold text-amber-900">
                   ${ToUSDT(totalCommission || 0).toLocaleString()}
@@ -219,10 +222,10 @@ const Profile = () => {
                   ≈ {exchange(totalCommission || 0).value}{" "}
                   {exchange(totalCommission || 0).currency}
                 </p>
-              </div>
+              </div> */}
 
               {/* Deposit */}
-              <div>
+              {/* <div>
                 <p className="text-amber-500 text-xs mb-1">Deposit</p>
                 <p className="text-xl font-bold text-amber-900">
                   ${ToUSDT(totalDeposit || 0).toLocaleString()}
@@ -231,10 +234,10 @@ const Profile = () => {
                   ≈ {exchange(totalDeposit || 0).value}{" "}
                   {exchange(totalDeposit || 0).currency}
                 </p>
-              </div>
+              </div> */}
 
               {/* Withdraw */}
-              <div>
+              {/* <div>
                 <p className="text-amber-500 text-xs mb-1">Withdraw</p>
                 <p className="text-xl font-bold text-amber-900">
                   ${ToUSDT(totalWithdraw || 0).toLocaleString()}
@@ -243,7 +246,7 @@ const Profile = () => {
                   ≈ {exchange(totalWithdraw || 0).value}{" "}
                   {exchange(totalWithdraw || 0).currency}
                 </p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 

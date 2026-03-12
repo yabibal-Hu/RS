@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import ErrorPopup from "@/components/ErrorPopup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,7 +22,7 @@ import {
   Key,
   ChevronDown,
   Crown,
-  Sparkles,
+  // Sparkles,
   User,
   CheckCircle,
   Award,
@@ -129,7 +129,7 @@ export default function Login() {
   // Handle Login
   const handleLogin = async () => {
     setLoading(true);
-// remove userName from localstorage
+    // remove userName from localstorage
     localStorage.removeItem("userName");
     localStorage.removeItem("vipLevel");
     const phoneWithoutCode = loginData.phone
@@ -553,7 +553,7 @@ export default function Login() {
                         ) : (
                           <div className="flex items-center justify-center gap-3">
                             <Shield className="w-5 h-5" />
-                            <span>Secure Login</span>
+                            <span> Login</span>
                           </div>
                         )}
                       </Button>
@@ -562,7 +562,7 @@ export default function Login() {
                       <div className="flex items-center justify-center gap-2 p-4 bg-amber-50 rounded-xl border border-amber-200">
                         <Shield className="w-5 h-5 text-amber-500" />
                         <p className="text-sm text-amber-700">
-                          256-bit encrypted connection
+                          Your information encrypted
                         </p>
                       </div>
                     </motion.div>
@@ -819,7 +819,7 @@ export default function Login() {
                       </Button>
 
                       {/* Welcome Bonus */}
-                      <div className="bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300">
+                      {/* <div className="bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300">
                         <div className="flex items-center gap-3 mb-2">
                           <Sparkles className="w-5 h-5 text-amber-600" />
                           <h4 className="font-serif text-amber-800">
@@ -839,14 +839,14 @@ export default function Login() {
                             </p>
                             <p className="text-xs text-amber-600">Commission</p>
                           </div>
-                          {/* <div>
+                          <div>
                             <p className="text-lg font-bold text-amber-800">
-                              5
+                              1
                             </p>
                             <p className="text-xs text-amber-600">Tasks</p>
-                          </div> */}
+                          </div>
                         </div>
-                      </div>
+                      </div> */}
                     </motion.div>
                   )}
                 </AnimatePresence>

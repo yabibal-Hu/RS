@@ -33,6 +33,7 @@
     "postcss": "^8.5.6",
     "qrcode.react": "^4.2.0",
     "react": "^19.1.1",
+    "react-d3-tree": "^3.6.6",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.5",
     "react-spinners": "^0.17.0",

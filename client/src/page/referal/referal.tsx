@@ -1,10 +1,10 @@
 import {
-  TrendingUp,
+  // TrendingUp,
   Users,
   Zap,
   Gift,
   Star,
-  Award,
+  // Award,
   Target,
   Shield,
 } from "lucide-react";
@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { Loader } from "@/components/Loading";
 import { UserService } from "@/services/userService";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface Referral {
   id: number;
@@ -21,21 +23,22 @@ interface Referral {
 }
 
 const Referral = () => {
-  const [totalReferrals, setTotalReferrals] = useState("");
-  const [activeReferrals, setActiveReferrals] = useState("");
+  // const [totalReferrals, setTotalReferrals] = useState("");
+  // const [activeReferrals, setActiveReferrals] = useState("");
   const [loading, setLoading] = useState(true);
   const [invitationCode, setInvitationCode] = useState("");
-  const [totalCommission, setTotalCommission] = useState(0);
-
+  // const [totalCommission, setTotalCommission] = useState(0);
+  // const [referralStats, setReferralStats] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("rsToken");
     const fetchUserData = async () => {
       const response = await UserService.getReferral();
       if (response.success) {
-        setTotalReferrals(response.data.referrals);
-        setActiveReferrals(response.data.activeReferrals);
+        // setTotalReferrals(response.data.referrals);
+        // setActiveReferrals(response.data.activeReferrals);
         setInvitationCode(response.data.invitationCode);
-        setTotalCommission(response.data.totalCommission || 0);
+        // setTotalCommission(response.data.totalCommission || 0);
         setLoading(false);
       }
     };
@@ -44,20 +47,19 @@ const Referral = () => {
     }
   }, []);
 
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-screen ">
-          <Loader />;
-        </div>
-      );
-    }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen ">
+        <Loader />;
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen  py-8 px-4 relative">
       {/* Decorative Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-200/20 to-orange-200/20 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-br from-orange-200/20 to-amber-200/20 rounded-full blur-3xl -z-10"></div>
-
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -97,7 +99,7 @@ const Referral = () => {
             className="space-y-4"
           >
             {/* Total Referrals Card */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden group hover:shadow-2xl transition-all">
+            {/* <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden group hover:shadow-2xl transition-all">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-2xl"></div>
 
               <div className="flex items-start justify-between mb-4">
@@ -125,7 +127,6 @@ const Referral = () => {
                 </span>
               </div>
 
-              {/* Progress indicator */}
               <div className="mt-4">
                 <div className="h-1.5 bg-amber-100 rounded-full overflow-hidden">
                   <motion.div
@@ -138,16 +139,16 @@ const Referral = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Active Referrals Card */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden group hover:shadow-2xl transition-all">
+            {/* <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden group hover:shadow-2xl transition-all">
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-400/10 to-green-400/10 rounded-full blur-2xl"></div>
 
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <p className="text-amber-600 text-sm mb-1">
-                    Active Referrals
+                    Active Referral Users
                   </p>
                   <p className="text-4xl font-bold text-amber-900">
                     {activeReferrals}
@@ -170,14 +171,13 @@ const Referral = () => {
                   {Number(activeReferrals) > 0 ? "⚡ Live" : "🎯 Invite more!"}
                 </span>
               </div>
-
-              {/* Active users indicator */}
               <div className="mt-4 flex items-center gap-2">
+             
                 <div className="flex -space-x-2">
-                  {[...Array(Math.min(Number(activeReferrals), 5))].map(
-                    (_, i) => (
-                      <div
-                        key={i}
+                {[...Array(Math.min(Number(activeReferrals), 5))].map(
+                  (_, i) => (
+                    <div
+                    key={i}
                         className="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 border-2 border-white flex items-center justify-center"
                       >
                         <span className="text-[10px] text-white font-bold">
@@ -189,10 +189,10 @@ const Referral = () => {
                 </div>
                 <span className="text-xs text-amber-500">active now</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Commission Preview Card */}
-            <div className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl p-6 border border-amber-300 relative overflow-hidden">
+            {/* <div className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl p-6 border border-amber-300 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-20 h-20 bg-white/20 rounded-full blur-xl"></div>
 
               <div className="flex items-center gap-3 mb-3">
@@ -217,10 +217,15 @@ const Referral = () => {
                   <p className="text-sm font-bold text-emerald-600">50 ETB</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </div>
-
+        <Button
+          onClick={() => navigate("/referal-network")}
+          className="w-60 h-14 text-lg font-serif bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 relative overflow-hidden group"
+        >
+          Show Referral Network
+        </Button>
         {/* How It Works Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Player, { type LottieRefCurrentProps } from "lottie-react";
-import animationData from "../../assets/lottie/load.json";
+// import Player, { type LottieRefCurrentProps } from "lottie-react";
+// import animationData from "../../assets/lottie/1y4rD1Ad9l.json";
 import { Hourglass, Sparkles } from "lucide-react";
 
 interface CountdownTimerProps {
@@ -14,7 +14,7 @@ export default function CountdownTimer({
 }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [timeIsUp, setTimeIsUp] = useState(false);
-  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+  // const lottieRef = useRef<LottieRefCurrentProps | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -30,9 +30,9 @@ export default function CountdownTimer({
         if (!timeIsUp) {
           setTimeIsUp(true);
           onTimeIsUp();
-          if (lottieRef.current) {
-            lottieRef.current.stop();
-          }
+          // if (lottieRef.current) {
+          //   lottieRef.current.stop();
+          // }
         }
         if (timerRef.current) {
           clearInterval(timerRef.current);
@@ -99,7 +99,7 @@ export default function CountdownTimer({
       <div className="p-4">
         <div className="flex items-center gap-4">
           {/* Lottie Animation - Smaller */}
-          <div className="relative">
+          {/* <div className="relative">
             <Player
               lottieRef={lottieRef}
               autoplay={!timeIsUp}
@@ -114,10 +114,10 @@ export default function CountdownTimer({
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Timer Info */}
-          <div className="flex-1">
+          <div className=" mx-auto">
             <div className="flex items-center gap-2 mb-1">
               {timeIsUp ? (
                 <Sparkles className="w-4 h-4 text-emerald-500" />

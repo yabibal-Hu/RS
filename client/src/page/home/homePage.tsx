@@ -10,7 +10,9 @@ import { motion } from "framer-motion";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
-  BuildingOfficeIcon,
+  // BuildingOfficeIcon,
+  // ExclamationCircleIcon,
+  GlobeAsiaAustraliaIcon,
 } from "@heroicons/react/24/outline";
 import { showToast } from "@/utils/toast";
 import LevelCard from "@/components/levelCard";
@@ -87,9 +89,9 @@ const Dashboard = () => {
       iconColor: "text-white",
     },
     {
-      name: "Company",
-      path: "/#",
-      icon: BuildingOfficeIcon,
+      name: "About RS",
+      path: "/company",
+      icon: GlobeAsiaAustraliaIcon,
       gradient: "from-amber-400 to-orange-400",
       bgGradient: "from-amber-50 to-orange-50",
       borderColor: "border-amber-200",

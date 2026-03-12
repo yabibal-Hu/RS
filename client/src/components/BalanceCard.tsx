@@ -76,7 +76,7 @@ export default function BalanceCard({
 
           {/* Local Currency Balance */}
           <div className="flex items-center justify-between pt-2 border-t border-amber-100">
-            <span className="text-sm text-amber-600">Exchange Currency</span>
+            <span className="text-sm text-amber-600">ETB Balance</span>
             <motion.span
               key={exchangedPrice.value}
               initial={{ scale: 0.5, opacity: 0 }}

@@ -43,9 +43,9 @@ export default function LevelCard() {
             {/* Inner Glass Content */}
             <div className="absolute inset-0 mx-4 mt-10 mb-4 flex flex-col items-center justify-center  text-center space-y-2 backdrop-blur-lg bg-white/10 rounded-2xl z-10">
               <p className="text-xs font-medium drop-shadow">
-                Register / Valid
+                Register  Valid
                 <br />
-                <span className="text-sm font-bold">{item.registerValue}</span>
+                {/* <span className="text-sm font-bold">{item.registerValue}</span> */}
               </p>
               <p className="text-xs font-medium drop-shadow">
                 Commission Percentage
