@@ -23,6 +23,8 @@ model User {
   profile      Profile?
   task         Task[]
   transactions Transaction[]
+    referrer     User?         @relation("UserReferrals", fields: [invitedBy], references: [inviteCode])
+  referrals    User[]        @relation("UserReferrals")
 }
 
 model Profile {

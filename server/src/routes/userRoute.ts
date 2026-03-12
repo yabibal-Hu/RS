@@ -67,6 +67,7 @@ router.get("/vip/update", usersController.vip);
 router.post("/task/make", authenticate, usersController.makeTask);
 router.get("/task/info", authenticate, usersController.taskInfo);
 router.get("/fund/orders", authenticate, usersController.fundOrders);
+router.get("/referral/network", authenticate, usersController.getReferralStats);
 // router.post(
 //   "/deposit/balance",
 //   authenticate,

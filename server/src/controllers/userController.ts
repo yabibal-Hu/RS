@@ -1350,46 +1350,84 @@ export const usersController = {
     }
   },
 
-  getReferralNetwork: async (req: AuthRequest, res: Response) => {
-    const userId = req.userId;
+// API endpoint to get user's referral tree
+getReferralStats: async (req: AuthRequest, res: Response) => {
+  const userId = req.userId;
+  
+  try {
+    // Get current user's inviteCode
+    const currentUser = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { inviteCode: true }
+    });
 
-    try {
-      // Get all referrals with their paths
-      const referrals = await prisma.$queryRaw`
-      WITH RECURSIVE referral_tree AS (
-        SELECT 
-          id, 
-          "invitedBy", 
-          1 as level,
-          CAST(id AS CHAR(1000)) as path
-        FROM User 
-        WHERE id = ${userId}
-        
-        UNION ALL
-        
-        SELECT 
-          u.id, 
-          u."invitedBy", 
-          rt.level + 1,
-          CONCAT(rt.path, '->', u.id)
-        FROM User u
-        INNER JOIN referral_tree rt ON u."invitedBy" = rt.id
-        WHERE rt.level < 10
-      )
-      SELECT 
-        rt.*,
-        p."vipName",
-        p."totalDeposit",
-        p."totalCommission",
-        (SELECT COUNT(*) FROM User WHERE "invitedBy" = rt.id) as referral_count
-      FROM referral_tree rt
-      LEFT JOIN Profile p ON rt.id = p."userId"
-      ORDER BY rt.path;
-    `;
-
-      return res.json({ success: true, data: referrals });
-    } catch (error: any) {
-      return res.status(500).json({ error: error.message, success: false });
+    if (!currentUser) {
+      return res.status(404).json({ error: "User not found", success: false });
     }
-  },
+
+    // Get level 1 (direct referrals)
+    const level1 = await prisma.user.findMany({
+      where: { invitedBy: currentUser.inviteCode },
+      select: { 
+        id: true,
+        inviteCode: true
+      }
+    });
+
+    // Get level 2 (referrals of referrals)
+    const level1InviteCodes = level1.map(u => u.inviteCode);
+    const level2 = await prisma.user.findMany({
+      where: { invitedBy: { in: level1InviteCodes } },
+      select: { 
+        id: true,
+        inviteCode: true
+      }
+    });
+
+    // Get level 3
+    const level2InviteCodes = level2.map(u => u.inviteCode);
+    const level3 = await prisma.user.findMany({
+      where: { invitedBy: { in: level2InviteCodes } },
+      select: { 
+        id: true
+      }
+    });
+
+    // Return only counts
+    const stats = {
+      level1: level1.length,
+      level2: level2.length,
+      level3: level3.length,
+      totalReferrals: level1.length + level2.length + level3.length
+    };
+
+    return res.json({ success: true, data: stats });
+  } catch (error: any) {
+    console.error("Referral stats error:", error);
+    return res.status(500).json({ error: error.message, success: false });
+  }
+}
+
+
+
+
 };
+
+/**
+import Tree from 'react-d3-tree';
+
+function ReferralTree({ data }) {
+  return (
+    <div style={{ width: '100%', height: '500px' }}>
+      <Tree 
+        data={data}
+        orientation="vertical"
+        pathFunc="straight"
+        translate={{ x: 300, y: 100 }}
+        nodeSize={{ x: 200, y: 100 }}
+      />
+    </div>
+  );
+}
+
+*/
