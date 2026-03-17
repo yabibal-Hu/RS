@@ -55,7 +55,6 @@ const Deposit = () => {
   const [userBalance, setUserBalance] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [owner, setOwner] = useState<string>("ETB");
-  // const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectedVip = searchParams.get("vip");
@@ -226,276 +225,180 @@ const Deposit = () => {
     );
   }
 
+  // Simplified animations for mobile
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.05, // Reduced stagger for faster loading
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring" as const, stiffness: 300, damping: 20 },
+      transition: { duration: 0.2 }, // Simple fade instead of spring
     },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 300, damping: 20 },
-    },
-    // hover: {
-    //   scale: 1.02,
-    //   y: -2,
-    //   transition: { type: "spring" as const, stiffness: 400, damping: 10 },
-    // },
   };
 
   return (
-    <div className="min-h-screen  py-8 px-4 relative overflow-hidden">
-      {/* Animated Background Particles */}
+    <div className="min-h-screen py-4 px-3 relative overflow-hidden">
+      {/* Simplified Background - Reduced particles for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-amber-300/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [null, -30, 30, -30],
-              x: [null, 30, -30, 30],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
+        {[...Array(8)].map(
+          (
+            _,
+            i, // Reduced from 20 to 8 particles
+          ) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-amber-300/20 rounded-full"
+              initial={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+              }}
+              animate={{
+                y: [null, -20, 20, -20],
+              }}
+              transition={{
+                duration: Math.random() * 15 + 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ),
+        )}
       </div>
 
-      {/* Floating Gradient Orbs */}
+      {/* Single gradient orb for background depth */}
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-          x: [0, 50, 0],
-          y: [0, -30, 0],
+          opacity: [0.1, 0.2, 0.1],
         }}
-        transition={{ duration: 15, repeat: Infinity }}
-        className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full blur-3xl -z-10"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-          x: [0, -50, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 18, repeat: Infinity }}
-        className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-orange-400/20 to-amber-400/20 rounded-full blur-3xl -z-10"
+        transition={{ duration: 10, repeat: Infinity }}
+        className="fixed top-20 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl -z-10"
       />
 
       <div className="max-w-2xl mx-auto relative z-10">
-        {/* Header with Animation */}
+        {/* Header - Simplified animation */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="text-center mb-8"
+          transition={{ duration: 0.3 }}
+          className="text-center mb-6"
         >
-          <motion.div
-            // whileHover={{ scale: 1.1, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-            className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-amber-200 relative"
-          >
-            <span className="text-3xl">💰</span>
-            <motion.div
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full blur-xl -z-10"
-            />
-          </motion.div>
+          <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+            <span className="text-2xl">💰</span>
+          </div>
 
-          <motion.h1
-            className="text-3xl font-serif text-amber-800 mb-2 drop-shadow-sm"
-            animate={{
-              scale: [1, 1.02, 1],
-              textShadow: [
-                "0 0 0 rgba(245,158,11,0)",
-                "0 0 8px rgba(245,158,11,0.3)",
-                "0 0 0 rgba(245,158,11,0)",
-              ],
-            }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
+          <h1 className="text-2xl font-serif text-amber-800 mb-1">
             Make a Deposit
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="text-amber-500 font-light"
-            animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
+          <p className="text-amber-500 text-sm">
             Add funds to start earning commissions
-          </motion.p>
+          </p>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-6"
+          className="space-y-4"
         >
           {/* Amount Selection Card */}
           <motion.div
-            variants={cardVariants}
-            // whileHover="hover"
-            // onHoverStart={() => setHoveredCard("amount")}
-            // onHoverEnd={() => setHoveredCard(null)}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden"
+            variants={itemVariants}
+            className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-amber-200 p-4"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/5 to-orange-400/0"
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div
-                // animate={{ rotate: hoveredCard === "amount" ? 360 : 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center"
-              >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
                 {redirectedVip ? (
-                  <Crown className="w-5 h-5 text-white" />
+                  <Crown className="w-4 h-4 text-white" />
                 ) : (
-                  <Wallet className="w-5 h-5 text-white" />
+                  <Wallet className="w-4 h-4 text-white" />
                 )}
-              </motion.div>
-              <h2 className="text-xl font-serif text-amber-800">
+              </div>
+              <h2 className="text-lg font-serif text-amber-800">
                 {redirectedVip
                   ? `Upgrade to VIP ${redirectedVip}`
                   : "Deposit Amount"}
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {redirectedVip ? (
                 <>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {/* Current Balance */}
-                    <motion.div
-                      // whileHover={{ scale: 1.05 }}
-                      className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
-                    >
-                      <p className="text-amber-500 text-xs mb-2 flex items-center gap-1">
+                    <div className="bg-amber-50/50 rounded-lg p-3 border border-amber-200">
+                      <p className="text-amber-500 text-xs mb-1 flex items-center gap-1">
                         <Shield className="w-3 h-3" />
                         Your Balance
                       </p>
-                      <motion.p
-                        className="text-2xl font-serif text-amber-800"
-                        key={userBalance}
-                        initial={{ scale: 0.5 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring" }}
-                      >
+                      <p className="text-lg font-serif text-amber-800">
                         {exchange(Number(userBalance)).value}{" "}
-                        <span className="text-sm font-light text-amber-400">
+                        <span className="text-xs font-light text-amber-400">
                           {exchange(Number(userBalance)).currency}
                         </span>
-                      </motion.p>
-                    </motion.div>
+                      </p>
+                    </div>
 
                     {/* Required Amount */}
-                    <motion.div
-                      // whileHover={{ scale: 1.05 }}
-                      className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300"
-                    >
-                      <p className="text-amber-600 text-xs mb-2 flex items-center gap-1">
+                    <div className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-lg p-3 border border-amber-300">
+                      <p className="text-amber-600 text-xs mb-1 flex items-center gap-1">
                         <Crown className="w-3 h-3" />
                         Required
                       </p>
-                      <motion.p
-                        className="text-2xl font-serif text-amber-800"
-                        key={amount}
-                        initial={{ scale: 0.5 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring" }}
-                      >
+                      <p className="text-lg font-serif text-amber-800">
                         {(
                           exchange(handleVipPrice(redirectedVip)).value -
                           (exchange(Number(userBalance)).value +
                             exchange(handleVipPrice(vipLevel)).value)
                         ).toFixed(2)}{" "}
-                        <span className="text-sm font-light text-amber-400">
+                        <span className="text-xs font-light text-amber-400">
                           {exchange(Number(userBalance)).currency}
                         </span>
-                      </motion.p>
-                    </motion.div>
+                      </p>
+                    </div>
                   </div>
 
                   {/* Deposit history button */}
-                  <motion.div
-                    className="flex items-center justify-center p-4"
-                    // whileHover={{ scale: 1.05 }}
-                    // whileTap={{ scale: 0.95 }}
+                  <button
+                    onClick={() => navigate("/deposit/record")}
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
                   >
-                    <button
-                      onClick={() => navigate("/deposit/record")}
-                      className="bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
-                    >
-                      View Deposit Record
-                    </button>
-                  </motion.div>
+                    View Deposit Record
+                  </button>
                 </>
               ) : (
                 <>
                   {/* Balance & VIP Selection */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <motion.div
-                      // whileHover={{ scale: 1.05 }}
-                      className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
-                    >
-                      <p className="text-amber-500 text-xs mb-2">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-amber-50/50 rounded-lg p-3 border border-amber-200">
+                      <p className="text-amber-500 text-xs mb-1">
                         Your Balance
                       </p>
-                      <motion.p
-                        className="text-2xl font-serif text-amber-800"
-                        key={userBalance}
-                        initial={{ scale: 0.5 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring" }}
-                      >
+                      <p className="text-lg font-serif text-amber-800">
                         {exchange(Number(userBalance)).value}{" "}
-                        <span className="text-sm font-light text-amber-400">
+                        <span className="text-xs font-light text-amber-400">
                           {exchange(Number(userBalance)).currency}
                         </span>
-                      </motion.p>
-                    </motion.div>
+                      </p>
+                    </div>
 
-                    <motion.div
-                      // whileHover={{ scale: 1.05 }}
-                      className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
-                    >
-                      <p className="text-amber-500 text-xs mb-2">Select VIP</p>
+                    <div className="bg-amber-50/50 rounded-lg p-3 border border-amber-200">
+                      <p className="text-amber-500 text-xs mb-1">Select VIP</p>
                       <Select
                         onValueChange={(value) => setSelectedVip(value)}
                         value={selectedVip}
                       >
-                        <SelectTrigger className="bg-white border-amber-200 text-amber-700 h-12 rounded-xl">
+                        <SelectTrigger className="bg-white border-amber-200 text-amber-700 h-10 rounded-lg text-sm">
                           <SelectValue placeholder="Choose level" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-amber-200">
@@ -507,11 +410,11 @@ const Deposit = () => {
                               <SelectItem
                                 key={vip.id}
                                 value={vip.name.toString()}
-                                className="text-amber-700 hover:bg-amber-50"
+                                className="text-amber-700 hover:bg-amber-50 text-sm"
                               >
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-3">
                                   <span>VIP {vip.name}</span>
-                                  <span className="text-amber-400 text-sm">
+                                  <span className="text-amber-400 text-xs">
                                     {exchange(vip.price).value}{" "}
                                     {exchange(vip.price).currency}
                                   </span>
@@ -520,22 +423,16 @@ const Deposit = () => {
                             ))}
                         </SelectContent>
                       </Select>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Deposit history button */}
-                  <motion.div
-                    className="flex items-center justify-center w-full p-4"
-                    // whileHover={{ scale: 1.05 }}
-                    // whileTap={{ scale: 0.95 }}
+                  <button
+                    onClick={() => navigate("/deposit/record")}
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
                   >
-                    <button
-                      onClick={() => navigate("/deposit/record")}
-                      className="bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
-                    >
-                      View Deposit Record
-                    </button>
-                  </motion.div>
+                    View Deposit Record
+                  </button>
 
                   {/* Required Amount if VIP selected */}
                   <AnimatePresence>
@@ -544,54 +441,37 @@ const Deposit = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="space-y-4"
+                        transition={{ duration: 0.2 }}
+                        className="space-y-3"
                       >
-                        <motion.div
-                          // whileHover={{ scale: 1.05 }}
-                          className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
-                        >
-                          <p className="text-amber-500 text-xs mb-2">
+                        <div className="bg-amber-50/50 rounded-lg p-3 border border-amber-200">
+                          <p className="text-amber-500 text-xs mb-1">
                             VIP {selectedVip} Price
                           </p>
-                          <motion.p
-                            className="text-2xl font-serif text-amber-800"
-                            key={selectedVip}
-                            initial={{ scale: 0.5 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring" }}
-                          >
+                          <p className="text-lg font-serif text-amber-800">
                             {exchange(handleVipPrice(selectedVip)).value}{" "}
-                            <span className="text-sm font-light text-amber-400">
+                            <span className="text-xs font-light text-amber-400">
                               {exchange(Number(userBalance)).currency}
                             </span>
-                          </motion.p>
-                        </motion.div>
+                          </p>
+                        </div>
 
-                        <motion.div
-                          // whileHover={{ scale: 1.05 }}
-                          className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl p-4 border border-amber-300"
-                        >
-                          <p className="text-amber-600 text-xs mb-2">
+                        <div className="bg-gradient-to-br from-amber-100 to-orange-100 rounded-lg p-3 border border-amber-300">
+                          <p className="text-amber-600 text-xs mb-1">
                             Required Amount
                           </p>
-                          <motion.p
-                            className="text-2xl font-serif text-amber-800"
-                            key={amount}
-                            initial={{ scale: 0.5 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring" }}
-                          >
+                          <p className="text-lg font-serif text-amber-800">
                             {(
                               exchange(Number(handleVipPrice(selectedVip)))
                                 .value -
                               (exchange(Number(userBalance)).value +
                                 exchange(handleVipPrice(vipLevel)).value)
                             ).toFixed(2)}{" "}
-                            <span className="text-sm font-light text-amber-400">
+                            <span className="text-xs font-light text-amber-400">
                               {exchange(Number(userBalance)).currency}
                             </span>
-                          </motion.p>
-                        </motion.div>
+                          </p>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -602,35 +482,24 @@ const Deposit = () => {
 
           {/* Payment Method Card */}
           <motion.div
-            variants={cardVariants}
-            // whileHover="hover"
-            // onHoverStart={() => setHoveredCard("payment")}
-            // onHoverEnd={() => setHoveredCard(null)}
-            className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6 relative overflow-hidden"
+            variants={itemVariants}
+            className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-amber-200 p-4"
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/5 to-orange-400/0"
-              animate={{ x: ["-100%", "200%"] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-
-            <div className="flex items-center gap-3 mb-4">
-              <motion.div
-                // animate={{ rotate: hoveredCard === "payment" ? 360 : 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center"
-              >
-                <span className="text-white">💳</span>
-              </motion.div>
-              <h2 className="text-xl font-serif text-amber-800">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
+                <span className="text-white text-sm">💳</span>
+              </div>
+              <h2 className="text-lg font-serif text-amber-800">
                 Payment Details
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Bank Selection */}
-              <div className="space-y-2">
-                <Label className="text-amber-700">Select Payment Method</Label>
+              <div className="space-y-1">
+                <Label className="text-amber-700 text-sm">
+                  Select Payment Method
+                </Label>
                 <Select
                   value={paymentMethod}
                   onValueChange={(value: string) => {
@@ -640,7 +509,7 @@ const Deposit = () => {
                     );
                   }}
                 >
-                  <SelectTrigger className="bg-white border-amber-200 text-amber-700 h-12 rounded-xl">
+                  <SelectTrigger className="bg-white border-amber-200 text-amber-700 h-10 rounded-lg text-sm">
                     <SelectValue placeholder="Choose payment method" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-amber-200">
@@ -648,11 +517,11 @@ const Deposit = () => {
                       <SelectItem
                         key={method.id}
                         value={method.bankName}
-                        className="text-amber-700 hover:bg-amber-50"
+                        className="text-amber-700 hover:bg-amber-50 text-sm"
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                           <img
-                            className="w-6 h-6 rounded-full"
+                            className="w-5 h-5 rounded-full"
                             src={
                               bankLogos[method.bankName] ||
                               "/images/bank/default.jpg"
@@ -674,45 +543,43 @@ const Deposit = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="space-y-2"
+                    transition={{ duration: 0.2 }}
+                    className="space-y-1"
                   >
-                    <Label className="text-amber-700">Account Number</Label>
+                    <Label className="text-amber-700 text-sm">
+                      Account Number
+                    </Label>
                     <div className="relative">
                       <Input
                         value={accountNumber}
                         readOnly
-                        className="bg-amber-50/50 border-amber-200 text-amber-800 h-12 pr-12"
+                        className="bg-amber-50/50 border-amber-200 text-amber-800 h-10 pr-10 text-sm"
                       />
-                      <motion.button
-                        // whileHover={{ scale: 1.1 }}
-                        // whileTap={{ scale: 0.9 }}
+                      <button
                         type="button"
                         onClick={handleCopy}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-amber-600 hover:bg-amber-100 p-2 rounded-full"
+                        className="absolute right-1 top-1/2 transform -translate-y-1/2 text-amber-600 hover:bg-amber-100 p-1.5 rounded-full transition-colors"
                       >
                         {isCopied ? (
-                          <Check className="h-4 w-4 text-emerald-500" />
+                          <Check className="h-3.5 w-3.5 text-emerald-500" />
                         ) : (
-                          <Copy className="h-4 w-4" />
+                          <Copy className="h-3.5 w-3.5" />
                         )}
-                      </motion.button>
+                      </button>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
               {/* Receipt Upload */}
-              <div className="space-y-3 pt-2">
-                <Label className="text-amber-700 flex items-center gap-2">
-                  <Camera className="w-4 h-4" />
+              <div className="space-y-2 pt-1">
+                <Label className="text-amber-700 text-sm flex items-center gap-1">
+                  <Camera className="w-3.5 h-3.5" />
                   Upload Payment Receipt
                 </Label>
 
                 {!file ? (
-                  <motion.div
-                    // whileHover={{ scale: 1.02 }}
-                    className="border-2 border-dashed border-amber-200 rounded-xl p-6 text-center hover:border-amber-300 transition-colors bg-amber-50/30"
-                  >
+                  <div className="border-2 border-dashed border-amber-200 rounded-lg p-4 text-center hover:border-amber-300 transition-colors bg-amber-50/30">
                     <input
                       type="file"
                       id="receipt"
@@ -720,46 +587,38 @@ const Deposit = () => {
                       accept="image/*"
                       className="hidden"
                     />
-                    <label htmlFor="receipt" className="cursor-pointer">
+                    <label htmlFor="receipt" className="cursor-pointer block">
                       <div className="flex flex-col items-center">
-                        <motion.div
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"
-                        >
-                          <FileUp className="w-6 h-6 text-amber-500" />
-                        </motion.div>
-                        <p className="text-amber-800 font-medium mb-1">
+                        <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-2">
+                          <FileUp className="w-5 h-5 text-amber-500" />
+                        </div>
+                        <p className="text-amber-800 text-sm font-medium mb-1">
                           Upload Payment Proof
                         </p>
-                        <p className="text-amber-400 text-sm mb-3">
+                        <p className="text-amber-400 text-xs mb-2">
                           Screenshot or photo of transaction
                         </p>
-                        <motion.div
-                          // whileHover={{ scale: 1.05 }}
-                          // whileTap={{ scale: 0.95 }}
-                          className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-white text-sm shadow-md"
-                        >
+                        <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs">
                           Choose File
-                        </motion.div>
+                        </div>
                       </div>
                     </label>
-                  </motion.div>
+                  </div>
                 ) : (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-amber-50/50 rounded-xl p-4 border border-amber-200"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="bg-amber-50/50 rounded-lg p-3 border border-amber-200"
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-emerald-500" />
                         </div>
                         <div>
-                          <p className="font-medium text-amber-800">
-                            {file.name.length > 20
-                              ? file.name.slice(0, 20) + "..."
+                          <p className="text-sm text-amber-800">
+                            {file.name.length > 15
+                              ? file.name.slice(0, 15) + "..."
                               : file.name}
                           </p>
                           <p className="text-amber-400 text-xs">
@@ -767,28 +626,22 @@ const Deposit = () => {
                           </p>
                         </div>
                       </div>
-                      <motion.button
-                        // whileHover={{ scale: 1.1, rotate: 90 }}
-                        whileTap={{ scale: 0.9 }}
+                      <button
                         onClick={handleRemoveFile}
-                        className="w-8 h-8 rounded-full bg-rose-100 hover:bg-rose-200 flex items-center justify-center transition-colors"
+                        className="w-7 h-7 rounded-full bg-rose-100 hover:bg-rose-200 flex items-center justify-center transition-colors"
                       >
-                        <X className="w-4 h-4 text-rose-500" />
-                      </motion.button>
+                        <X className="w-3.5 h-3.5 text-rose-500" />
+                      </button>
                     </div>
 
                     {previewUrl && file.type.startsWith("image/") && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="rounded-lg overflow-hidden border border-amber-200"
-                      >
+                      <div className="rounded-lg overflow-hidden border border-amber-200">
                         <img
                           src={previewUrl}
                           alt="Receipt preview"
                           className="w-full h-auto"
                         />
-                      </motion.div>
+                      </div>
                     )}
                   </motion.div>
                 )}
@@ -800,73 +653,46 @@ const Deposit = () => {
           <AnimatePresence>
             {amount && paymentMethod && (
               <motion.div
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                exit={{ opacity: 0, y: -20 }}
-                className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-amber-200 p-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-amber-200 p-4"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
-                    <span className="text-white">📊</span>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
+                    <span className="text-white text-sm">📊</span>
                   </div>
-                  <h2 className="text-xl font-serif text-amber-800">
+                  <h2 className="text-lg font-serif text-amber-800">
                     Deposit Summary
                   </h2>
                 </div>
 
-                <div className="space-y-3">
-                  <motion.div
-                    className="flex justify-between text-amber-700"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 }}
-                  >
+                <div className="space-y-2">
+                  <div className="flex justify-between text-amber-700 text-sm">
                     <span>Deposit Amount:</span>
-                    <motion.span
-                      className="font-serif font-bold"
-                      key={amount}
-                      initial={{ scale: 0.5 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: "spring" }}
-                    >
+                    <span className="font-serif font-medium">
                       {exchange(Number(amount)).value}{" "}
                       {exchange(Number(amount)).currency}
-                    </motion.span>
-                  </motion.div>
+                    </span>
+                  </div>
 
-                  <motion.div
-                    className="flex justify-between text-amber-700"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
+                  <div className="flex justify-between text-amber-700 text-sm">
                     <span>Processing Fee:</span>
                     <span className="font-serif text-emerald-600 font-medium">
                       FREE
                     </span>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    className="border-t border-amber-200 pt-3 mt-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <div className="flex justify-between text-amber-800 font-serif text-lg">
+                  <div className="border-t border-amber-200 pt-2 mt-1">
+                    <div className="flex justify-between text-amber-800 font-serif text-base">
                       <span>Total:</span>
-                      <motion.span
-                        className="text-amber-900 font-bold"
-                        key={amount}
-                        initial={{ scale: 0.5 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring" }}
-                      >
+                      <span className="text-amber-900 font-bold">
                         {exchange(Number(amount)).value}{" "}
                         {exchange(Number(amount)).currency}
-                      </motion.span>
+                      </span>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -875,35 +701,23 @@ const Deposit = () => {
           {/* Submit Button */}
           <motion.div
             variants={itemVariants}
-            // whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="sticky bottom-2" // Sticky on mobile
           >
             <Button
               disabled={!amount || !paymentMethod || !file || isSubmitting}
               onClick={handleDeposit}
-              className="w-full h-14 text-lg font-serif bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 relative overflow-hidden group"
+              className="w-full h-12 text-base font-serif bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white border-0 shadow-lg disabled:opacity-50"
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-
               {isSubmitting ? (
-                <div className="flex items-center justify-center gap-2 relative z-10">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Processing...
                 </div>
               ) : (
-                <div className="flex items-center justify-center gap-2 relative z-10">
+                <div className="flex items-center justify-center gap-2">
                   <span>💰</span>
                   <span>Confirm Deposit</span>
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.div>
+                  <ArrowRight className="w-4 h-4" />
                 </div>
               )}
             </Button>

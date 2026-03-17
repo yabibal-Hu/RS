@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   const location = useLocation();
-
+  const currentPath = location.pathname;
   // Luxury Gold/Black Theme Navigation
   const navigation = [
     {
@@ -51,6 +51,11 @@ export default function Footer() {
       activeIcon: <UserCircleIconSolid className="w-5 h-5" />,
     },
   ];
+
+  console.log("currentPath", currentPath);
+  if (currentPath === "/404") {
+    return;
+  }
 
   return (
     <motion.footer

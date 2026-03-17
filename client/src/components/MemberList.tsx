@@ -337,9 +337,9 @@ export default function MemberList() {
                     {/* User Details - Truncated text */}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1 sm:gap-2 mb-0.5">
-                        <p className="font-bold text-amber-900 text-xs sm:text-sm truncate">
+                        {/* <p className="font-bold text-amber-900 text-xs sm:text-sm truncate">
                           {member.name.split(" ")[0]}
-                        </p>
+                        </p> */}
                         <div className="px-1 sm:px-1.5 py-0.5 bg-amber-100 rounded-full border border-amber-200 hidden xs:block">
                           <span className="text-[6px] sm:text-[8px] text-amber-600">
                             Pro
@@ -461,8 +461,8 @@ export default function MemberList() {
           transition={{ duration: 2, repeat: Infinity }}
           className="mt-2 text-[8px] sm:text-xs text-amber-400 bg-amber-50 rounded-lg p-1.5 text-center truncate"
         >
-          🔥 {members[0]?.name.split(" ")[0]} traded •{" "}
-          {members[1]?.name.split(" ")[0]} VIP {members[1]?.vip}
+          🔥 {members[0]?.phone.split(" ")[0]} traded •{" "}
+          {members[1]?.phone.split(" ")[0]} VIP {members[1]?.vip}
         </motion.div>
       </div>
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "@/components/Loading";
 import { SettingService } from "@/services/settingService";
-import { motion } from "framer-motion";
 import {
   Crown,
   Calendar,
@@ -98,9 +97,7 @@ export default function ProductPage() {
 
   const handleUnlock = (levelName: string, price: number) => {
     if (userVipLevel == "0") {
-      showToast.error(
-        "Please deposit first to unlock VIP levels.",
-      );
+      showToast.error("Please deposit first to unlock VIP levels.");
       navigate("/deposit");
       return;
     }
@@ -108,11 +105,6 @@ export default function ProductPage() {
       `/deposit?amount=${price}&vip=${levelName}&balance=${userCurrentBalance}&currentLevelPrice=${currentLevelPrice}`,
     );
   };
-
-  // const getNextVipLevel = () => {
-  //   const currentLevel = parseInt(userVipLevel);
-  //   return vip.find((v) => parseInt(v.name) === currentLevel + 1);
-  // };
 
   if (loading) {
     return (
@@ -123,104 +115,89 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen  py-6 px-3 relative">
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-amber-200/20 to-orange-200/20 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-br from-orange-200/20 to-amber-200/20 rounded-full blur-3xl -z-10"></div>
+    <div className="min-h-screen py-4 px-2 relative">
+      {/* Single static background element */}
+      <div className="fixed top-20 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/5 to-orange-400/5 rounded-full blur-3xl -z-10"></div>
 
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-6 text-center">
-          <div className="flex justify-center mb-3">
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full shadow-lg shadow-amber-200 flex items-center justify-center animate-float">
-              <Crown className="w-8 h-8 text-white" />
+        {/* Header - Static */}
+        <div className="mb-4 text-center">
+          <div className="flex justify-center mb-2">
+            <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full shadow-md flex items-center justify-center">
+              <Crown className="w-7 h-7 text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-serif text-amber-800 mb-1">
+          <h1 className="text-xl font-serif text-amber-800 mb-0.5">
             VIP Levels
           </h1>
-          <p className="text-amber-500 text-sm">
+          <p className="text-amber-500 text-xs">
             Unlock exclusive benefits and earn more
           </p>
         </div>
 
-        {/* Current VIP Status - Compact */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-amber-200 p-4 mb-6"
-        >
+        {/* Current VIP Status - Static */}
+        <div className="bg-white/95 rounded-lg shadow border border-amber-200 p-3 mb-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
-                <Award className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center flex-shrink-0">
+                <Award className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-amber-600 text-xs">Current VIP Level</p>
-                <h2 className="text-xl font-bold text-amber-900">
+                <p className="text-amber-600 text-[10px]">Current VIP Level</p>
+                <h2 className="text-lg font-bold text-amber-900">
                   VIP {userVipLevel}
                 </h2>
               </div>
             </div>
 
             <div className="text-right">
-              <p className="text-amber-600 text-xs">Balance</p>
-              <p className="text-lg font-bold text-amber-900">
+              <p className="text-amber-600 text-[10px]">Balance</p>
+              <p className="text-base font-bold text-amber-900">
                 {userCurrentBalance} ETB
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* VIP Grid - Smaller Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {vip?.map((level, index) => (
-            <motion.div
-              key={level.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="relative"
-            >
-              {/* Compact Card */}
+        {/* VIP Grid - Simple cards without animations */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {vip?.map((level) => (
+            <div key={level.id} className="relative">
+              {/* Simple Card */}
               <div
-                className={`bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border-2 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1
-                ${
-                  level.unlocked
-                    ? "border-emerald-200"
-                    : "border-amber-200 hover:border-amber-300"
-                }`}
+                className={`bg-white/95 rounded-lg shadow border-2 overflow-hidden
+                ${level.unlocked ? "border-emerald-200" : "border-amber-200"}`}
               >
-                {/* Card Header Gradient - Thinner */}
+                {/* Card Header - Thin line */}
                 <div
-                  className={`h-1.5 w-full bg-gradient-to-r ${
+                  className={`h-1 w-full bg-gradient-to-r ${
                     level.unlocked
                       ? "from-emerald-400 to-green-500"
                       : "from-amber-400 to-orange-400"
                   }`}
                 ></div>
 
-                {/* Status Badge - Smaller */}
-                <div className="absolute top-3 left-2">
+                {/* Status Badge */}
+                <div className="absolute top-2 left-2">
                   {level.unlocked ? (
-                    <div className="flex items-center gap-0.5 px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded-full border border-emerald-200">
-                      <Unlock className="w-2.5 h-2.5" />
-                      <span className="text-[10px] font-medium">UNLOCKED</span>
+                    <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-emerald-100 text-emerald-600 rounded-full border border-emerald-200">
+                      <Unlock className="w-2 h-2" />
+                      <span className="text-[8px] font-medium">UNLOCKED</span>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-0.5 px-2 py-0.5 bg-amber-100 text-amber-600 rounded-full border border-amber-200">
-                      <Lock className="w-2.5 h-2.5" />
-                      <span className="text-[10px] font-medium">LOCKED</span>
+                    <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-amber-100 text-amber-600 rounded-full border border-amber-200">
+                      <Lock className="w-2 h-2" />
+                      <span className="text-[8px] font-medium">LOCKED</span>
                     </div>
                   )}
                 </div>
 
-                <div className="p-4">
+                <div className="p-3">
                   <div className="grid grid-cols-2 gap-2">
-                    {/* VIP Icon and Level - Smaller */}
-                    <div className="flex flex-col items-center mt-3">
+                    {/* VIP Icon */}
+                    <div className="flex flex-col items-center">
                       <div
-                        className={`relative w-24 h-24 rounded-full my-2 flex items-center justify-center
+                        className={`relative w-20 h-20 rounded-full my-1 flex items-center justify-center
                       ${
                         level.unlocked
                           ? "bg-gradient-to-br from-amber-400 to-orange-400"
@@ -229,20 +206,19 @@ export default function ProductPage() {
                       >
                         <img
                           src={
-                            vipImages[Number(level.name) ] ||
-                            "/images/gift.png"
+                            vipImages[Number(level.name)] || "/images/gift.png"
                           }
                           alt={`VIP ${level.name}`}
-                          className="w-24 h-24 object-contain"
+                          className="w-20 h-20 object-contain"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src =
                               "/images/gift.png";
                           }}
                         />
 
-                        {/* Level Number - Smaller */}
+                        {/* Level Number */}
                         <div
-                          className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 px-2 py-0.5 rounded-full text-xs font-bold
+                          className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 px-1.5 py-0.5 rounded-full text-[10px] font-bold
                         ${
                           level.unlocked
                             ? "bg-emerald-500 text-white"
@@ -253,39 +229,40 @@ export default function ProductPage() {
                         </div>
                       </div>
 
-                      <h3 className="text-sm font-serif text-amber-900 text-center line-clamp-1">
+                      <h3 className="text-xs text-amber-900 text-center line-clamp-1 mt-2">
                         {level.description || `VIP Level ${level.name}`}
                       </h3>
                     </div>
 
-                    {/* Compact Stats - Only 2 stats (Per Task & Daily Income) */}
-                    <div className="grid grid-cols-1 gap-2 mb-3">
-                      <div className="bg-amber-50/50 rounded-lg p-2 text-center border border-amber-100">
+                    {/* Stats */}
+                    <div className="grid grid-cols-1 gap-1.5">
+                      <div className="bg-amber-50/50 rounded-lg p-1.5 text-center border border-amber-100">
                         <div className="flex items-center justify-center gap-0.5 text-amber-500 mb-0.5">
-                          <Zap className="w-3 h-3" />
-                          <span className="text-[10px]">Daily Task</span>
+                          <Zap className="w-2.5 h-2.5" />
+                          <span className="text-[8px]">Per Task</span>
                         </div>
-                        <p className="text-base font-bold text-emerald-600">
+                        <p className="text-sm font-bold text-emerald-600">
                           {level.incomePerTask} ETB
                         </p>
                       </div>
 
-                      <div className="bg-amber-50/50 rounded-lg p-2 text-center border border-amber-100">
+                      <div className="bg-amber-50/50 rounded-lg p-1.5 text-center border border-amber-100">
                         <div className="flex items-center justify-center gap-0.5 text-amber-500 mb-0.5">
-                          <Calendar className="w-3 h-3" />
-                          <span className="text-[10px]">Weekly</span>
+                          <Calendar className="w-2.5 h-2.5" />
+                          <span className="text-[8px]">Weekly</span>
                         </div>
-                        <p className="text-base font-bold text-amber-800">
+                        <p className="text-sm font-bold text-amber-800">
                           {level.dailyIncome * 7} ETB
                         </p>
                       </div>
                     </div>
                   </div>
-                  {/* Price and Action - Compact */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between px-2 py-1.5 bg-amber-100/50 rounded-lg border border-amber-200">
-                      <span className="text-amber-700 text-xs">Price</span>
-                      <span className="text-base font-bold text-amber-900">
+
+                  {/* Price and Action */}
+                  <div className="space-y-1.5 mt-2">
+                    <div className="flex items-center justify-between px-2 py-1 bg-amber-100/50 rounded-lg border border-amber-200">
+                      <span className="text-amber-700 text-[10px]">Price</span>
+                      <span className="text-sm font-bold text-amber-900">
                         {level.price} ETB
                       </span>
                     </div>
@@ -293,63 +270,51 @@ export default function ProductPage() {
                     <button
                       onClick={() => handleUnlock(level.name, level.price)}
                       disabled={level.unlocked}
-                      className={`w-full py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1
+                      className={`w-full py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1
                         ${
                           level.unlocked
                             ? "bg-emerald-100 text-emerald-600 border border-emerald-200 cursor-default"
-                            : "bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white shadow-md hover:shadow-lg active:scale-95"
+                            : "bg-gradient-to-r from-amber-400 to-orange-400 active:from-amber-500 active:to-orange-500 text-white shadow-sm"
                         }`}
                     >
                       {level.unlocked ? (
                         <>
-                          <Unlock className="w-3 h-3" />
-                          <span className="text-xs">Unlocked</span>
+                          <Unlock className="w-2.5 h-2.5" />
+                          <span>Unlocked</span>
                         </>
                       ) : (
                         <>
-                          <Gift className="w-3 h-3" />
-                          <span className="text-xs">Upgrade</span>
+                          <Gift className="w-2.5 h-2.5" />
+                          <span>Upgrade</span>
                         </>
                       )}
                     </button>
 
-                    {/* Yearly Earning Hint - Smaller */}
+                    {/* Yearly Earning Hint */}
                     {!level.unlocked && (
-                      <p className="text-[10px] text-center text-amber-400">
+                      <p className="text-[8px] text-center text-amber-400">
                         ✨ {(level.dailyIncome * 365).toLocaleString()} ETB/year
                       </p>
                     )}
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Info Footer - Compact */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 text-center"
-        >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full border border-amber-200">
-            <Sparkles className="w-3 h-3 text-amber-500" />
-            <p className="text-xs text-amber-600">
+        {/* Info Footer */}
+        <div className="mt-4 text-center">
+          <div className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/95 rounded-full border border-amber-200">
+            <Sparkles className="w-2.5 h-2.5 text-amber-500" />
+            <p className="text-[10px] text-amber-600">
               Higher levels = better rewards
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
         .line-clamp-1 {
           display: -webkit-box;
           -webkit-line-clamp: 1;

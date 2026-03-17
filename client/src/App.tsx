@@ -29,6 +29,7 @@ import { isValidToken } from "./lib/jwt";
 import GenerateCertificate from "./components/GenerateCRT";
 import CompanyProfile from "./page/company/CompanyProfile";
 import ReferralNetworkPage from "./page/referal/referralNetworkPage";
+import NotFound from "./page/404/404";
 // Import the font (this adds the @font-face rules)
 
 
@@ -235,6 +236,14 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/404"
+            element={
+              // <ProtectedRoute>
+                <NotFound />
+              // </ProtectedRoute>
+            }
+          />
 
           {/* Admin Only Routes */}
           <Route
@@ -273,7 +282,7 @@ const App = () => {
           </Route>
 
           {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/coming-soon" replace />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
 
         {/* Replace Footer with ConditionalFooter */}
