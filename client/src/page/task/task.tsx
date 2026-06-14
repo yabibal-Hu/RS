@@ -375,7 +375,7 @@ export default function TaskPage() {
                         ) : activeTaskId === mainTask.id ? (
                           <Hand className="w-9 h-9 text-white" />
                         ) : (
-                          <Play className="w-9 h-9 text-white ml-1" />
+                          <Play className="w-9 h-9 text-white" />
                         )}
                       </div>
 
