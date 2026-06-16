@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 const slides = [
   {
     image: "/images/system/company.jpeg",
-    title: "Premium Investment Platform",
+    title: "",
     description:
       "Experience luxury trading with high-yield opportunities and exclusive benefits.",
     icon: Crown,
@@ -181,7 +181,10 @@ export default function LandingCarousel() {
           const SlideIcon = slide.icon;
 
           return (
-            <div key={idx} className="w-full h-full shrink-0 relative snap-center">
+            <div
+              key={idx}
+              className="w-full h-full shrink-0 relative snap-center"
+            >
               {/* Background Image with Overlay */}
               <div className="absolute inset-0">
                 <img

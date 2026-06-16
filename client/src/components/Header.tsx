@@ -155,9 +155,9 @@ export default function Header() {
                 </span>
                 <Sparkles className="w-4 h-4 text-amber-400" />
               </div>
-              <span className="text-xs font-medium text-amber-500 tracking-wide">
+              {/* <span className="text-xs font-medium text-amber-500 tracking-wide">
                 Premium Investment Platform
-              </span>
+              </span> */}
             </div>
 
             {/* Decorative Corner */}
