@@ -1,9 +1,4 @@
-import {
-  X,
-  HeadphonesIcon,
-  Sparkles,
-  Crown,
-} from "lucide-react";
+import { X, HeadphonesIcon, Sparkles, Crown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -93,7 +88,7 @@ export default function CustomerServiceButton() {
     {
       name: "Telegram Bot",
       icon: "/images/telegram.png",
-      href: "https://t.me/Ethio3MSupport_bot",
+      href: "#",
       description: "24/7 Automated Support",
       gradient: "from-amber-400 to-orange-400",
     },
@@ -108,7 +103,7 @@ export default function CustomerServiceButton() {
     {
       name: "Telegram Channel",
       icon: "/images/telegram.png",
-      href: "https://t.me/ethio3M",
+      href: "https://t.me/RSGroupRSS",
       description: "Updates & Announcements",
       gradient: "from-amber-400 to-orange-400",
     },
@@ -238,7 +233,7 @@ export default function CustomerServiceButton() {
                 {supportOptions.map((option, index) => (
                   <motion.a
                     key={index}
-                    // href={option.href}
+                    href={option.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
