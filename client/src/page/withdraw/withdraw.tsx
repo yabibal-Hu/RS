@@ -200,7 +200,7 @@ const Withdraw = () => {
                   Available Balance
                 </p>
                 <p className="text-2xl font-bold text-amber-900">
-                  {exchange(availableBalance).value}{" "}
+                  {exchange(availableBalance).value.toLocaleString()}{" "}
                   <span className="text-sm text-amber-500">
                     {exchange(availableBalance).currency}
                   </span>
@@ -339,10 +339,10 @@ const Withdraw = () => {
 
             <div className="flex justify-between mt-2">
               <span className="text-amber-500 text-xs">
-                Min: {exchange(minWithdraw).value}
+                Min: {exchange(minWithdraw).value.toLocaleString()}
               </span>
               <span className="text-amber-500 text-xs">
-                Max: {exchange(maxWithdraw).value}
+                Max: {exchange(maxWithdraw).value.toLocaleString()}
               </span>
             </div>
 
@@ -357,7 +357,8 @@ const Withdraw = () => {
                         Insufficient Balance
                       </span>
                       <p className="text-rose-500/70 text-xs mt-0.5">
-                        Available: {exchange(availableBalance).value}{" "}
+                        Available:{" "}
+                        {exchange(availableBalance).value.toLocaleString()}{" "}
                         {exchange(availableBalance).currency}
                       </p>
                     </div>

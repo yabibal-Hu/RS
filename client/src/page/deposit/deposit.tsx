@@ -176,7 +176,9 @@ const Deposit = () => {
       const res = await UserService.deposit(formData);
 
       if (res.success) {
-        showToast.success(`Deposit of ${amount} ETB initiated successfully!`);
+        showToast.success(
+          `Deposit of ${amount.toLocaleString()} ETB initiated successfully!`,
+        );
         setAmount("");
         setPaymentMethod("");
         setFile(null);
@@ -327,7 +329,7 @@ const Deposit = () => {
               <h2 className="text-lg font-serif text-amber-800">
                 {redirectedVip
                   ? `Upgrade to VIP ${redirectedVip}`
-                  : "Deposit Amount"}
+                  : `Deposit Amount.toLocaleString()`}
               </h2>
             </div>
 
@@ -342,7 +344,7 @@ const Deposit = () => {
                         Your Balance
                       </p>
                       <p className="text-lg font-serif text-amber-800">
-                        {exchange(Number(userBalance)).value}{" "}
+                        {exchange(Number(userBalance)).value.toLocaleString()}{" "}
                         <span className="text-xs font-light text-amber-400">
                           {exchange(Number(userBalance)).currency}
                         </span>
@@ -385,7 +387,7 @@ const Deposit = () => {
                         Your Balance
                       </p>
                       <p className="text-lg font-serif text-amber-800">
-                        {exchange(Number(userBalance)).value}{" "}
+                        {exchange(Number(userBalance)).value.toLocaleString()}{" "}
                         <span className="text-xs font-light text-amber-400">
                           {exchange(Number(userBalance)).currency}
                         </span>
@@ -415,7 +417,7 @@ const Deposit = () => {
                                 <div className="flex items-center gap-3">
                                   <span>VIP {vip.name}</span>
                                   <span className="text-amber-400 text-xs">
-                                    {exchange(vip.price).value}{" "}
+                                    {exchange(vip.price).value.toLocaleString()}{" "}
                                     {exchange(vip.price).currency}
                                   </span>
                                 </div>
@@ -449,7 +451,9 @@ const Deposit = () => {
                             VIP {selectedVip} Price
                           </p>
                           <p className="text-lg font-serif text-amber-800">
-                            {exchange(handleVipPrice(selectedVip)).value}{" "}
+                            {exchange(
+                              handleVipPrice(selectedVip),
+                            ).value.toLocaleString()}{" "}
                             <span className="text-xs font-light text-amber-400">
                               {exchange(Number(userBalance)).currency}
                             </span>
@@ -466,7 +470,7 @@ const Deposit = () => {
                                 .value -
                               (exchange(Number(userBalance)).value +
                                 exchange(handleVipPrice(vipLevel)).value)
-                            ).toFixed(2)}{" "}
+                            ).toLocaleString()}{" "}
                             <span className="text-xs font-light text-amber-400">
                               {exchange(Number(userBalance)).currency}
                             </span>
@@ -672,7 +676,7 @@ const Deposit = () => {
                   <div className="flex justify-between text-amber-700 text-sm">
                     <span>Deposit Amount:</span>
                     <span className="font-serif font-medium">
-                      {exchange(Number(amount)).value}{" "}
+                      {exchange(Number(amount)).value.toLocaleString()}{" "}
                       {exchange(Number(amount)).currency}
                     </span>
                   </div>
@@ -688,7 +692,7 @@ const Deposit = () => {
                     <div className="flex justify-between text-amber-800 font-serif text-base">
                       <span>Total:</span>
                       <span className="text-amber-900 font-bold">
-                        {exchange(Number(amount)).value}{" "}
+                        {exchange(Number(amount)).value.toLocaleString()}{" "}
                         {exchange(Number(amount)).currency}
                       </span>
                     </div>

@@ -85,21 +85,21 @@ export default function CustomerServiceButton() {
   };
 
   const supportOptions = [
-    {
-      name: "Telegram Bot",
-      icon: "/images/telegram.png",
-      href: "#",
-      description: "24/7 Automated Support",
-      gradient: "from-amber-400 to-orange-400",
-    },
     // {
-    //   name: "Paul Davis",
-    //   icon: "/images/paul.jpg",
-    //   href: "https://t.me/etho3m",
-    //   description: "Live Agent Support",
+    //   name: "Telegram Bot",
+    //   icon: "/images/telegram.png",
+    //   href: "#",
+    //   description: "24/7 Automated Support",
     //   gradient: "from-amber-400 to-orange-400",
-    //   isRound: true,
     // },
+    {
+      name: "Pete Malpas",
+      icon: "/images/pete.jpg",
+      href: "https://t.me/Malpas1",
+      description: "Live Agent Support",
+      gradient: "from-amber-400 to-orange-400",
+      isRound: true,
+    },
     {
       name: "Telegram Channel",
       icon: "/images/telegram.png",
@@ -252,8 +252,8 @@ export default function CustomerServiceButton() {
                             <img
                               src={option.icon}
                               alt={option.name}
-                              className="w-full h-full object-cover p-3"
-                              // className={`w-full h-full object-cover ${option.isRound ? "rounded-full" : "p-3"}`}
+                              // className="w-full h-full object-cover p-3"
+                              className={`w-full h-full object-cover ${option.isRound ? "rounded-full" : "p-3"}`}
                             />
                           </div>
                         </div>

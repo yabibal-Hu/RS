@@ -153,7 +153,7 @@ export default function ProductPage() {
             <div className="text-right">
               <p className="text-amber-600 text-[10px]">Balance</p>
               <p className="text-base font-bold text-amber-900">
-                {userCurrentBalance} ETB
+                {userCurrentBalance.toLocaleString()} ETB
               </p>
             </div>
           </div>
@@ -242,7 +242,7 @@ export default function ProductPage() {
                           <span className="text-[8px]">Per Task</span>
                         </div>
                         <p className="text-sm font-bold text-emerald-600">
-                          {level.incomePerTask} ETB
+                          {level.incomePerTask.toLocaleString()} ETB
                         </p>
                       </div>
 
@@ -252,7 +252,7 @@ export default function ProductPage() {
                           <span className="text-[8px]">Weekly</span>
                         </div>
                         <p className="text-sm font-bold text-amber-800">
-                          {level.dailyIncome * 7} ETB
+                          {(level.dailyIncome * 7).toLocaleString()} ETB
                         </p>
                       </div>
                     </div>
@@ -263,7 +263,7 @@ export default function ProductPage() {
                     <div className="flex items-center justify-between px-2 py-1 bg-amber-100/50 rounded-lg border border-amber-200">
                       <span className="text-amber-700 text-[10px]">Price</span>
                       <span className="text-sm font-bold text-amber-900">
-                        {level.price} ETB
+                        {level.price.toLocaleString()} ETB
                       </span>
                     </div>
 
@@ -291,11 +291,9 @@ export default function ProductPage() {
                     </button>
 
                     {/* Yearly Earning Hint */}
-                    {!level.unlocked && (
-                      <p className="text-[8px] text-center text-amber-400">
-                        ✨ {(level.dailyIncome * 365).toLocaleString()} ETB/year
-                      </p>
-                    )}
+                    <p className="text-[10px] text-center text-amber-400">
+                      ✨ {(level.dailyIncome * 365).toLocaleString()} ETB/year
+                    </p>
                   </div>
                 </div>
               </div>
