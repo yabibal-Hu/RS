@@ -44,8 +44,8 @@ const Dashboard = () => {
           if (response?.user.profile.vip === null) {
             setVipLevel("0");
           } else {
-            setVipLevel(response?.user.profile.vip.name);     
-              localStorage.setItem("vipLevel", response?.user.profile.vip.name); 
+            setVipLevel(response?.user.profile.vip.name);
+            localStorage.setItem("vipLevel", response?.user.profile.vip.name);
           }
           setLoading(false);
           localStorage.setItem("userName", response?.user.name);
@@ -89,7 +89,7 @@ const Dashboard = () => {
       iconColor: "text-white",
     },
     {
-      name: "About RS",
+      name: "About",
       path: "/company",
       icon: GlobeAsiaAustraliaIcon,
       gradient: "from-amber-400 to-orange-400",
@@ -108,13 +108,13 @@ const Dashboard = () => {
     // },
   ];
 
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <Loader />;
-        </div>
-      );
-    }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader />;
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen  pb-4 px-2 relative">
@@ -169,7 +169,7 @@ const Dashboard = () => {
           transition={{ delay: 0.3 }}
         >
           <CardContent className="p-2">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-4 gap-2">
               {quickActions.map((action, index) => (
                 <motion.div
                   key={index}
@@ -179,10 +179,10 @@ const Dashboard = () => {
                 >
                   <Link to={action.path} className="block">
                     <div
-                      className={`bg-white/90 backdrop-blur-sm rounded-xl border-2 ${action.borderColor} p-4 text-center shadow-lg hover:shadow-xl transition-all`}
+                      className={`bg-white/90 backdrop-blur-sm rounded-xl border-2 ${action.borderColor} p-2 text-center shadow-lg hover:shadow-xl transition-all`}
                     >
                       <div
-                        className={`w-12 h-12 mx-auto mb-2 rounded-full bg-gradient-to-br ${action.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-8 h-8 mx-auto mb-2 rounded-full bg-gradient-to-br ${action.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}
                       >
                         <action.icon
                           className={`w-6 h-6 ${action.iconColor}`}
@@ -195,6 +195,26 @@ const Dashboard = () => {
                   </Link>
                 </motion.div>
               ))}
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group"
+              >
+                <a href="https://t.me/RSGroupRSS" className="block">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl border-2 border-amber-200 p-2 text-center shadow-lg hover:shadow-xl transition-all">
+                    <div className="w-8 h-8 mx-auto mb-2 rounded-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <img
+                        src="/images/telegram.png"
+                        alt="Telegram"
+                        className="w-6 h-6"
+                      />
+                    </div>
+                    <span className="text-xs font-medium text-amber-800">
+                      Telegram
+                    </span>
+                  </div>
+                </a>
+              </motion.div>
             </div>
           </CardContent>
         </motion.div>
