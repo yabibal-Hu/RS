@@ -103,7 +103,7 @@ export default function CustomerServiceButton() {
     {
       name: "Telegram Channel",
       icon: "/images/telegram.png",
-      href: "https://t.me/RSGroupRSS",
+      href: "https://t.me/rsgroup12",
       description: "Updates & Announcements",
       gradient: "from-amber-400 to-orange-400",
     },
